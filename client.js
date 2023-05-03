@@ -54,16 +54,10 @@ console.log('array of employee data: ', employees);
 // - The `log` should be in the loop, not the function.
 // Write a declared function that takes in one **Employee** object (as an argument to the function), and `return` a new **object** with the following properties. 
 // _Note these properties are different than the ones you start with!_
-function grabEmployee(array) {
-  for (let i = 0; i < array.length; i++) {
-    let employee = array[i]
-    console.log(`this should show each employee`, employee);
-    calculateIndividualEmployeeBonus(employee);
-  }
 
-  grabEmployee(employees);
-}
-  function calculateIndividualEmployeeBonus(employee) {
+function calculateIndividualEmployeeBonus(employee) {
+  // your logic here
+  
     let bonusPercentage = 0;
     if (employee.reviewRating <= 2) {
       bonusPercentage = 0;
@@ -77,7 +71,7 @@ function grabEmployee(array) {
     if (employee.employeeNumber.length === 4) {
       bonusPercentage += 0.05;
     }
-    if (employee.annualSalary > 65000) {
+    if (Number(employee.annualSalary) > 65000) {
       bonusPercentage -= 0.01;
     }
     if (bonusPercentage > 0.13) {
@@ -85,27 +79,27 @@ function grabEmployee(array) {
     } else if (bonusPercentage < 0) {
       bonusPercentage = 0;
     }
-}
-  // your logic here
-  // create a for of loop that loops through the employees and returns their ratings
-  function looper(employee) {
-    for (let i = 0; i < employee.length; i++) {
-      let keys = employee[i]
-      if (keys.reviewRating <= 2) {
-        employee.totalBonus = 0;
-      }
-      if (keys.reviewRating === 3) {
-        employee.totalBonus += employee.annualSalary * .04;
-      }
-      if (keys.reviewRating === 4) {
-        employee.totalBonus += employee.annualSalary * .06;
-      }
-      if (keys.reviewRating === 5) {
-        employee.totalBonus += employee.annualSalary * .1;
-      }
-    }
+  console.log(bonusPercentage);
+  let totalBonus = bonusPercentage * Number(employee.annualSalary);
+  let totalCompensation = totalBonus + Number(employee.annualSalary); //original salary + 
+  let newEmployee = {
+    name: employee.name,
+    bonusPercentage: bonusPercentage,
+    totalCompensation: totalCompensation,
+    totalBonus: totalBonus
+  }
+  
 
-    //   Those who have a rating of a 2 or below should not receive a bonus.
+  return newEmployee;
+}
+
+for (let i = 0; i < employees.length; i++) {
+  let employee = employees[i];
+  console.log(calculateIndividualEmployeeBonus(employee));
+}
+
+
+//   Those who have a rating of a 2 or below should not receive a bonus.
     // Those who have a rating of a 3 should receive a base bonus of 4% of their base annual income.
     // Those who have a rating of a 4 should receive a base bonus of 6% of their base annual income.
     // Those who have a rating of a 5 should receive a base bonus of 10% of their base annual income.
@@ -113,13 +107,3 @@ function grabEmployee(array) {
     // However, if their annual income is greater than $65,000, they should have their bonus adjusted down 1%.
     // No bonus can be above 13% or below 0% total.
     // return new object with bonus results
-
-//   }
- }
-
-// testing calulcator function
-console.log(calculateIndividualEmployeeBonus(employees));
-
-// ******* COMMENTS ON ASSIGNMENT ***********
-// we got stuck on the logic on this pretty hard. Hopefully going to ask good questions during the review and go over things that we missed or couldn't figure out. 
-
